@@ -1,10 +1,28 @@
+// const Joi= require('joi');
 const express = require('express');
 const db = require('../Database/database');
 
 const router =express.Router();
 
+const checkAuthenticated = (req, res, next) => {
+    if (req.isAuthenticated()) {
+    return res.redirect("/auth/google");
+    }
+    next();
+};
 
-router.post('/', (req, res) => {
+
+// const schema= Joi.object({
+//     todo_title: Joi.string().min(3).required()
+// });
+
+router.post('/',checkAuthenticated,(req, res) => {
+
+//    const {err,value}=schema.validate(req.body);
+
+//     if (err){
+//         res.status(400).send("Bad Request");
+//     }
 
     let post = req.body;
     let sql = "insert into todoapp.todos set ?";
@@ -12,8 +30,8 @@ router.post('/', (req, res) => {
         if (err) throw err;
         console.log(result);
         res.send(post);
-
     })
+    
 });
 
 

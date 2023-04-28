@@ -1,0 +1,20 @@
+{
+  "dependencies": {
+    "express": "^4.18.2",
+    "express-session": "^1.17.3",
+    "joi": "^17.9.1",
+    "mysql2": "^3.2.0",
+    "node": "^19.6.1",
+    "passport": "^0.6.0",
+    "passport-google-oauth2": "^0.2.0"
+  },
+  "name": "crudapp",
+  "version": "1.0.0",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}
