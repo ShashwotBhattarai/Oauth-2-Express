@@ -1,8 +1,8 @@
 const express = require('express');
-const db = require('../Database/database');
+const db = require('../../Database/database');
 const router = require('./postApi');
 
-router.get('/',(req, res) => {
+router.get('/', (req, res) => {
     let sql = "select * from todoapp.todos";
     db.query(sql, (err, result) => {
         if (err) throw err;
@@ -20,5 +20,4 @@ router.get('/:todo_id', (req, res) => {
     });
 });
 
-
-module.exports=router
+module.exports = router

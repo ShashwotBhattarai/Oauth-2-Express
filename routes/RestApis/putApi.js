@@ -1,8 +1,6 @@
 const express = require('express');
-const db = require('../Database/database');
+const db = require('../../Database/database');
 const router = require('./postApi');
-
-
 
 router.put('/', (req, res) => {
 
@@ -22,4 +20,4 @@ router.put('/', (req, res) => {
 
 });
 
-module.exports=router;
+module.exports = router;

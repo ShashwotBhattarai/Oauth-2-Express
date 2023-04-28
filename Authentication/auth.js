@@ -1,14 +1,11 @@
 const passport = require('passport')
 const GoogleStrategy = require('passport-google-oauth2').Strategy;
-
-const GOOGLE_CLIENT_ID = '536072679777-cacmrsk9e1c3g9b9onl6mso8f6qbr159.apps.googleusercontent.com';
-const GOOGLE_CLIENT_SECRET = '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';
-
-const db = require('./Database/database');
+const db = require('../Database/database');
+const auth_credentials = require('./auth_credentials');
 
 passport.use(new GoogleStrategy({
-  clientID: GOOGLE_CLIENT_ID,
-  clientSecret: GOOGLE_CLIENT_SECRET,
+  clientID: auth_credentials.GOOGLE_CLIENT_ID,
+  clientSecret: auth_credentials.GOOGLE_CLIENT_SECRET,
   callbackURL: "http://localhost:5000/google/callback"
 },
   function (accessToken, refreshToken, profile, done) {
@@ -34,8 +31,6 @@ passport.use(new GoogleStrategy({
         console.log(result);
       }
     });
-
-
     return done(null, profile);
   }
 ));
