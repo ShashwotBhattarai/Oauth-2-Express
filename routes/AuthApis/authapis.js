@@ -1,6 +1,6 @@
 const express = require('express')
 const passport = require('passport');
-require('../../Authentication/auth');
+require('../../authentication/auth');
 const router = express.Router();
 
 //function to check authentication status of a request and user//

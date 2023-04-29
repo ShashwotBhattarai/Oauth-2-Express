@@ -1,7 +1,8 @@
 const passport = require('passport')
 const GoogleStrategy = require('passport-google-oauth2').Strategy;
-const db = require('../Database/database');
-const auth_credentials = require('./auth_credentials');
+const db = require('../database/database');
+const auth_credentials = require('../credentials/auth_credentials');
+const saveuser=require('../database/fetch_save_user');
 
 passport.use(new GoogleStrategy({
   clientID: auth_credentials.GOOGLE_CLIENT_ID,
@@ -11,26 +12,7 @@ passport.use(new GoogleStrategy({
   function (accessToken, refreshToken, profile, done) {
     console.log(profile);
     console.log(profile.id);
-    let sql = "select * from todoapp.userdetails where Email=? ";
-    let data = profile.email;
-    db.query(sql, data, (err, result) => {
-      if (err) throw err;
-      console.log(result.length);
-      if (result.length == 0) {
-        var sql = "INSERT INTO todoapp.userdetails (UserName, Email) VALUES (?,?)";
-        data = [profile.displayName, profile.email];
-        db.query(sql, data, (err, result) => {
-          if (err) throw err;
-          console.log("new user created");
-          console.log(result);
-          //res.send(result);
-        });
-      }
-      else {
-        console.log("old user fetched");
-        console.log(result);
-      }
-    });
+    saveuser(profile);
     return done(null, profile);
   }
 ));

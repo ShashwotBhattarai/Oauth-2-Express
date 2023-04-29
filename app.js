@@ -2,7 +2,7 @@
 const express = require('express');
 const session = require('express-session')
 const passport = require('passport');
-require('./Authentication/auth');
+require('./authentication/auth');
 
 /////backend in express/////
 const app = express();

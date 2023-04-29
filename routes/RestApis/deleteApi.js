@@ -1,5 +1,5 @@
 const express = require('express');
-const db = require('../../Database/database');
+const db = require('../../database/database');
 const router = require('./postApi');
 
 router.delete('/:todo_id', (req, res) => {
